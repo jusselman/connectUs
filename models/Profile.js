@@ -5,10 +5,6 @@ const ProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    interested: {
-        type: String,
-        required: true
-    },
     location: {
         type: String,
         required: true
@@ -19,4 +15,42 @@ const ProfileSchema = new mongoose.Schema({
     profession: {
         type: String
     },
+    looking: [
+        {
+            interested: {
+                type: String,
+                required: true
+            },
+            gender: {
+                type: String,
+                required: true
+            },
+            age: {
+                type: Number,
+                required: true
+            },
+            hate: {
+                type: [String],
+                required
+            }
+        }
+    ],
+    socialmedia: {
+        instagram: {
+            type: String
+        },
+        snapchat: {
+            type: String
+        },
+        facebook: {
+            type: String
+        },
+        linkedin: {
+            type: String
+        }
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
