@@ -5,12 +5,16 @@ const ProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    height: {
+        type: Number,
+        required: true
+    },
     location: {
         type: String,
         required: true
     },
     hobbies: {
-        type: String,
+        type: [String],
     },
     profession: {
         type: String
@@ -31,7 +35,7 @@ const ProfileSchema = new mongoose.Schema({
             },
             hate: {
                 type: [String],
-                required
+                required: true
             }
         }
     ],
@@ -54,3 +58,5 @@ const ProfileSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+module.exports = Profile = mongoose.model('profile', ProfileSchema);
