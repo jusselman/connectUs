@@ -5,8 +5,16 @@ const ProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    age: {
+        type: Number,
+        required: true
+    },
     height: {
         type: Number,
+        required: true
+    },
+    gender: {
+        type: String,
         required: true
     },
     location: {
@@ -58,5 +66,7 @@ const ProfileSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);
