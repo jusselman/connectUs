@@ -27,6 +27,21 @@ const ProfileSchema = new mongoose.Schema({
     profession: {
         type: String
     },
+
+    socialmedia: {
+        instagram: {
+            type: String
+        },
+        snapchat: {
+            type: String
+        },
+        facebook: {
+            type: String
+        },
+        linkedin: {
+            type: String
+        }
+    },
     looking: [
         {
             interested: {
@@ -42,30 +57,19 @@ const ProfileSchema = new mongoose.Schema({
                 required: true
             },
             hate: {
-                type: [String],
+                type: String,
                 required: true
             }
         }
     ],
-    socialmedia: {
-        instagram: {
-            type: String
-        },
-        snapchat: {
-            type: String
-        },
-        facebook: {
-            type: String
-        },
-        linkedin: {
-            type: String
-        }
-    },
     date: {
         type: Date,
         default: Date.now
     }
-});
+}
+
+
+);
 
 
 

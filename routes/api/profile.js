@@ -167,7 +167,7 @@ router.delete('/', auth, async (req, res) => {
 // route    PUT api/profile/looking //
 // desc     Add profile looking //
 // access   Privado //
-router.put(
+router.post(
     '/looking',
     [
         auth,
@@ -207,15 +207,12 @@ router.put(
         };
 
         try {
-            console.log('before const profile');
             const profile = await Profile.findOne({ user: req.user.id });
-            console.log('before unshift');
             profile.looking.unshift(newLook);
-            console.log('before await');
             await profile.save();
-            console.log('before res.json ')
-            res.json(profile);
-            console.log('before err');
+
+            const newLocal = res.json(profile);
+            console.log(newLocal);
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Busted');
@@ -223,6 +220,27 @@ router.put(
     }
 );
 
+
+// @route     DELETE api/profile/looking/:look_id
+// @descri    Delete looking from profile
+// @access    Private
+
+router.delete('/looking/:look_id', auth, async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+        // Get remove index //
+        const removeIndex = profile.looking.map(items => items.id)
+            .indexOf(req.params.look_id);
+
+        profile.looking.splice(removeIndex, 1);
+        await profile.save();
+        res.json(profile);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Busted');
+    }
+})
 
 
 
