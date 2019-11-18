@@ -13,10 +13,7 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    story: {
-        type: String,
-        required: true
-    },
+
     likes: [
         {
             user: {
