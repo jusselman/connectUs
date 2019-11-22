@@ -111,6 +111,28 @@ router.delete('/:id', auth, async (req, res) => {
     }
 });
 
+// PUT api/posts/:ID , 
+// Like a post, 
+// private access //
+roiuter.put('/like/:id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
 
+        // check it post has already been checked //
+        if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+            res.json(400).json({ msg: 'Already Liked' });
+        }
+
+        post.likes.unshift({ user: req.user.id });
+
+        await post.save();
+
+        res.json(post.likes);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Busted')
+    }
+})
 
 module.exports = router;
