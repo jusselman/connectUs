@@ -120,7 +120,7 @@ roiuter.put('/like/:id', auth, async (req, res) => {
 
         // check it post has already been checked //
         if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-            res.json(400).json({ msg: 'Already Liked' });
+            res.status(400).json({ msg: 'Already Liked' });
         }
 
         post.likes.unshift({ user: req.user.id });
@@ -133,6 +133,72 @@ roiuter.put('/like/:id', auth, async (req, res) => {
         console.error(err.message);
         res.status(500).send('Server Busted')
     }
-})
+});
+
+// POST api/posts/unlike/:ID , 
+// Like a post, 
+// private access //
+roiuter.put('/like/:id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+
+        // check it post has already been checked //
+        if (post.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+            res.status(400).json({ msg: 'Not Yet Liked' });
+        }
+
+        const removeIndex = post.likes.map(like => like.usertoString()).indexOf(req.user.id);
+
+        post.likes.splice(removeIndex, 1);
+
+        await post.save();
+
+        res.json(post.likes);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Busted')
+    }
+});
+
+// POST api/posts/comment/:id 
+// Comment on a Post, 
+// private access //
+router.post('/comments/:id', [
+    auth,
+    [
+        check('text', 'Comment is required')
+            .not()
+            .isEmpty()
+    ]
+],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        try {
+            const user = await User.findById(req.user.id).select('-password');
+
+            const newPost = new Post({
+                text: req.body.text,
+                avatar: user.avatar,
+                name: user.name,
+                user: req.user.id
+            });
+
+            const post = await newPost.save();
+
+            res.json(post);
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send('Server Busted')
+        }
+
+
+    }
+
+);
 
 module.exports = router;
