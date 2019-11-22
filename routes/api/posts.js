@@ -180,17 +180,21 @@ router.post('/comments/:id', [
 
         try {
             const user = await User.findById(req.user.id).select('-password');
+            const post = await Post.findById(req.params.id);
 
-            const newPost = new Post({
+
+            const newComment = {
                 text: req.body.text,
                 avatar: user.avatar,
                 name: user.name,
                 user: req.user.id
-            });
+            };
 
-            const post = await newPost.save();
+            post.comments.unshift(newComment);
 
-            res.json(post);
+            await post.save();
+
+            res.json(post.comments);
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Busted')
