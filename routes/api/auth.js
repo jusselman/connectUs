@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 const auth = require('../../middleware/auth');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
-// GET api/auth , Test route, public access //
-// Put auth as second argument to protect route //
+// @route    GET api/auth
+// @desc     Test route
+// @access   Public
 router.get('/', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
@@ -20,11 +21,15 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-// route: POST api/auth // dscr: authenticate user & get token // access public //
-router.post('/', [
-    check('email', 'Please include valid email').isEmail(),
-    check('password', 'Password required').isLength({ min: 6 })
-],
+// @route    POST api/auth
+// @desc     Authenticate user & get token
+// @access   Public
+router.post(
+    '/',
+    [
+        check('email', 'Please put valid email').isEmail(),
+        check('password', 'Password Required').exists()
+    ],
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -36,15 +41,13 @@ router.post('/', [
         try {
             let user = await User.findOne({ email });
 
-            if (user) {
+            if (!user) {
                 return res
                     .status(400)
                     .json({ errors: [{ msg: 'Invalid Credentials' }] });
             }
 
-
             const isMatch = await bcrypt.compare(password, user.password);
-
 
             if (!isMatch) {
                 return res
@@ -52,13 +55,11 @@ router.post('/', [
                     .json({ errors: [{ msg: 'Invalid Credentials' }] });
             }
 
-
-
             const payload = {
                 user: {
                     id: user.id
                 }
-            }
+            };
 
             jwt.sign(
                 payload,
@@ -67,14 +68,13 @@ router.post('/', [
                 (err, token) => {
                     if (err) throw err;
                     res.json({ token });
-                });
-
+                }
+            );
         } catch (err) {
             console.error(err.message);
-            res.status(500).send('Server Error');
+            res.status(500).send('Server Busted');
         }
     }
 );
-
 
 module.exports = router;
