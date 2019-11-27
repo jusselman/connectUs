@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://Joshua:fuckoff421@connectus-jzdch.azure.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret": "mysecret"
+    "jwtSecret": "mysecret",
+    "githubClientId": "28ea87f257c354e120c5",
+    "githubSecret": "d26c96f2db178b625e6d7b25ace8c78a0f5dc696"
 }

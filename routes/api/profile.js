@@ -167,7 +167,7 @@ router.delete('/', auth, async (req, res) => {
 // route    PUT api/profile/looking //
 // desc     Add profile looking //
 // access   Privado //
-router.post(
+router.put(
     '/looking',
     [
         auth,
@@ -204,15 +204,17 @@ router.post(
             gender,
             age,
             hate
-        };
+        }
 
         try {
             const profile = await Profile.findOne({ user: req.user.id });
             profile.looking.unshift(newLook);
             await profile.save();
 
-            const newLocal = res.json(profile);
-            console.log(newLocal);
+            // const newLocal = res.json(profile);
+            // console.log(newLocal);
+
+            res.json(profile);
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Busted');
