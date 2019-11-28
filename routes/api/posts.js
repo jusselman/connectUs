@@ -10,14 +10,16 @@ const User = require('../../models/User');
 // GET api users, 
 // Create a Post, 
 // private access //
-router.post('/', [
-    auth,
+router.post(
+    '/',
     [
-        check('text', 'Comment is required')
-            .not()
-            .isEmpty()
-    ]
-],
+        auth,
+        [
+            check('text', 'Text is required')
+                .not()
+                .isEmpty()
+        ]
+    ],
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -28,8 +30,8 @@ router.post('/', [
             const user = await User.findById(req.user.id).select('-password');
 
             const newPost = new Post({
-                text: req.body.text,
                 avatar: user.avatar,
+                text: req.body.text,
                 name: user.name,
                 user: req.user.id
             });
@@ -39,12 +41,9 @@ router.post('/', [
             res.json(post);
         } catch (err) {
             console.error(err.message);
-            res.status(500).send('Server Busted')
+            res.status(500).send('Server Error');
         }
-
-
     }
-
 );
 
 // GET api/posts , 
@@ -89,7 +88,7 @@ router.get('/:id', auth, async (req, res) => {
 
 router.delete('/:id', auth, async (req, res) => {
     try {
-        const posts = await Post.findById(req.params.id);
+        const post = await Post.findById(req.params.id);
 
         if (!post) {
             return res.status(404).json({ msg: 'Post not found' });
@@ -102,7 +101,7 @@ router.delete('/:id', auth, async (req, res) => {
 
         await post.remove();
 
-        res.json(posts);
+        res.json(post);
     } catch (err) {
         console.error(err.message);
         if (err.kind === 'ObjectId') {
@@ -118,9 +117,11 @@ router.put('/like/:id', auth, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
 
-        // check it post has already been checked //
-        if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-            res.status(400).json({ msg: 'Already Liked' });
+        // Check if post already liked
+        if (
+            post.likes.filter(like => like.user.toString() === req.user.id).length > 0
+        ) {
+            return res.status(400).json({ msg: 'Already Liked' });
         }
 
         post.likes.unshift({ user: req.user.id });
@@ -128,17 +129,16 @@ router.put('/like/:id', auth, async (req, res) => {
         await post.save();
 
         res.json(post.likes);
-
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Busted')
+        res.status(500).send('Server Error');
     }
 });
 
 // POST api/posts/unlike/:ID , 
 // Like a post, 
 // private access //
-router.put('/like/:id', auth, async (req, res) => {
+router.put('/unlike/:id', auth, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
 
@@ -147,7 +147,7 @@ router.put('/like/:id', auth, async (req, res) => {
             res.status(400).json({ msg: 'Not Yet Liked' });
         }
 
-        const removeIndex = post.likes.map(like => like.usertoString()).indexOf(req.user.id);
+        const removeIndex = post.likes.map(like => like.user.toString()).indexOf(req.user.id);
 
         post.likes.splice(removeIndex, 1);
 
