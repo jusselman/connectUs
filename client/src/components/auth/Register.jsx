@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 
 const Register = () => {
@@ -20,29 +21,10 @@ const Register = () => {
         if (password !== passwordConf) {
             console.log('Password does not match')
         } else {
-            const newUser = {
-                name,
-                email,
-                password
-            }
+            console.log('Success');
 
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-
-                const body = JSON.stringify(newUser);
-
-                const res = await axios.post('/api/users', body, config);
-                console.log(res.data);
-
-            } catch (err) {
-                console.error(err.response.data)
-            }
         }
-    }
+    };
 
 
     return (
@@ -101,7 +83,7 @@ const Register = () => {
                         <input type="submit" className="btn btn-primary" value="Register" />
                     </form>
                     <p className="my-1">
-                        Already a DE♥er? <a href="login.html">Sign In</a>
+                        Already a DE♥er? <Link to="/login">Sign In</Link>
                     </p>
                 </div>
             </section>
