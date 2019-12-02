@@ -183,12 +183,60 @@ img {
 }
 
 .alert {
-  padding: 0.8rem;
-  margin: 1rem 0;
-  opacity: 0.9;
-  background: var(--light-color);
+  /* width: 30%; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* margin: 5rem 0; */
+  opacity: 0.8;
+  font-size: 2rem;
+  text-align: center;
+  z-index: 9999;
   color: #333;
+  padding: 100px 50px;
+  transform: translate(-50%, -50%);
 }
+
+
+/* 
+.alert-danger:before,
+.alert-danger:after {
+  z-index: 1;
+  position: absolute;
+  content: "Password Incorrect";
+  left: 150px;
+  top: 0;
+  height: 200px;
+  width: 150px;
+  background: var(--danger-color);
+  -moz-border-radius: 50px 50px 0 0;
+  border-radius: 50px 50px 0 0;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: 0 100%;
+  -moz-transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  -o-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+
+.alert-danger:after {
+  left: 0;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+} */
+
 
 .btn-primary,
 .bg-primary,
@@ -224,6 +272,7 @@ img {
 .alert-danger {
   background: var(--danger-color);
   color: #fff;
+  clip-path: polygon(51% 29%, 61% 10%, 85% 9%, 98% 31%, 83% 72%, 52% 100%, 19% 74%, 0 33%, 13% 11%, 36% 10%);
 }
 
 .btn-success,
