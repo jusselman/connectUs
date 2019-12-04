@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
-import { stat } from 'fs';
+
 
 
 const Login = ({ login, isAuthenticated }) => {
@@ -75,7 +75,7 @@ Login.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(

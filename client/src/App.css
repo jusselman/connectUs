@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-  --primary-color: #7909a9;
+  --primary-color: #9b23a5;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -41,7 +41,7 @@ img {
   margin: 0;
   overflow: hidden;
   padding: 0 2rem;
-  margin-top: 3.77375rem;
+  display: block;
   /* margin-bottom: 3rem; */
 }
 
@@ -183,11 +183,9 @@ img {
 }
 
 .alert {
-  /* width: 30%; */
   position: absolute;
   top: 50%;
   left: 50%;
-  /* margin: 5rem 0; */
   opacity: 0.8;
   font-size: 2rem;
   text-align: center;
@@ -197,53 +195,12 @@ img {
   transform: translate(-50%, -50%);
 }
 
-
-/* 
-.alert-danger:before,
-.alert-danger:after {
-  z-index: 1;
-  position: absolute;
-  content: "Password Incorrect";
-  left: 150px;
-  top: 0;
-  height: 200px;
-  width: 150px;
-  background: var(--danger-color);
-  -moz-border-radius: 50px 50px 0 0;
-  border-radius: 50px 50px 0 0;
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  -webkit-transform-origin: 0 100%;
-  -moz-transform-origin: 0 100%;
-  -ms-transform-origin: 0 100%;
-  -o-transform-origin: 0 100%;
-  transform-origin: 0 100%;
-}
-
-.alert-danger:after {
-  left: 0;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  -webkit-transform-origin: 100% 100%;
-  -moz-transform-origin: 100% 100%;
-  -ms-transform-origin: 100% 100%;
-  -o-transform-origin: 100% 100%;
-  transform-origin: 100% 100%;
-} */
-
-
 .btn-primary,
 .bg-primary,
 .badge-primary,
 .alert-primary {
   background: var(--primary-color);
-  color: #fff;
+  color: #000;
 }
 
 .btn-light,
@@ -263,7 +220,7 @@ img {
 }
 
 .bg-sunset {
-  background: var(--sunset-color);
+  background: var(--primary-color);
 }
 
 .btn-danger,
@@ -395,7 +352,7 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
-  position: fixed;
+
   z-index: 1;
   width: 100%;
   top: 0;
@@ -408,16 +365,18 @@ button {
 }
 
 .navbar a {
-  color: var(--sunset-color);
+  color: #000;
   padding: 0.45rem;
   margin: 0 0.25rem;
-  text-shadow: 4px 0px 4px #000;
+  text-shadow: none;
   transition: all .3s ease;
 }
 
 .navbar a:hover {
   text-shadow: 4px 0px 4px rgb(247, 247, 247);
-  color: rgb(228, 169, 19);
+  color: var(--primary-color);
+  text-shadow: 4px 0px 4px #000;
+
 }
 
 .navbar .welcome span {
