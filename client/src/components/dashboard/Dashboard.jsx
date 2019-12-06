@@ -23,7 +23,7 @@ const Dashboard = ({
                     Hey There {user && user.name}!
             </p>
                 {profile !== null ? (
-                    <>has</>
+                    <>User Profile</>
                 ) : (
                         <>
                             <p>
