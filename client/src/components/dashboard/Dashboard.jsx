@@ -18,23 +18,26 @@ const Dashboard = ({
         <Loading />
     ) : (
             <>
-                <h1 className="large">Dashboard</h1>
-                <p className="lead">
-                    Hey There {user && user.name}!
+                <div className="dashboard-container">
+                    <div className="dashboard-text">
+                        <h1>Dashboard</h1>
+                        <p>
+                            Hey There {user && user.name}!
             </p>
-                {profile !== null ? (
-                    <>User Profile</>
-                ) : (
-                        <>
-                            <p>
-                                Uh Oh! No Profile! Fear not, fill out the profile page and you'll be smoochin' in no time.
+                        {profile !== null ? (
+                            <>User Profile</>
+                        ) : (
+                                <>
+                                    <p>
+                                        Uh Oh! No Profile! Fear not, fill out the profile page and you'll be smoochin' in no time.
                 </p>
-                            <Link to='/create-profile' className='btn btn-primary'>
-                                Set Up Profile
+                                    <Link to='/create-profile' className='btn btn-primary'>
+                                        Set Up Profile
             </Link>
-                        </>
-                    )}
-
+                                </>
+                            )}
+                    </div>
+                </div>
             </>
         );
 };

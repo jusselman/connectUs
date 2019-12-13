@@ -4,12 +4,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 
-const CreateProfile = props => {
+
+const CreateProfile = ({ createProfile, history }) => {
     const [formData, setFormData] = useState({
         age: '',
         height: '',
         gender: '',
         location: '',
+        company: '',
+        website: '',
+        languages: '',
+        githubusername: '',
         hobbies: '',
         profession: '',
         instagram: '',
@@ -18,11 +23,18 @@ const CreateProfile = props => {
         linkedin: ''
     });
 
+    const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
     const {
         age,
         height,
         gender,
+        company,
+        website,
+        languages,
+        githubusername,
         location,
+        status,
         hobbies,
         profession,
         instagram,
@@ -31,104 +43,124 @@ const CreateProfile = props => {
         linkedin
     } = formData;
 
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+
+    const onSubmit = e => {
+        e.preventDefault();
+        createProfile(formData, history)
+    }
     return (
         <>
-
-            <h1 className="large text-primary">
-                What kind of DE♥ are you?
+            <div className="profile-signup-container">
+                <h1 className="large text-primary">
+                    What kind of DE♥ are you?
             </h1>
-            <p className="lead">
-                <i className="fas fa-user"></i> Make that profile sing!
+                <p className="lead">
+                    <i className="fas fa-user"></i> Make that profile sing!
             </p>
-            <div>* = required field</div>
-            <form className="form">
-                <div className="form-group">
-                    <select name="status">
-                        <option value="0">* Select Professional Status</option>
-                        <option value="Developer">Developer</option>
-                        <option value="Junior Developer">Junior Developer</option>
-                        <option value="Senior Developer">Senior Developer</option>
-                        <option value="Manager">Manager</option>
-                        <option value="Student or Learning">Student or Learning</option>
-                        <option value="Instructor">Instructor or Teacher</option>
-                        <option value="Intern">Intern</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <div className="form-text">
-                        Tell us about your DE♥</div>
-                </div>
-                <div className="form-group">
-                    <input type="text" placeholder="Company" name="company" />
-                    <div className="form-text">
-                        Tell them about your work-life</div>
-                </div>
-                <div className="form-group">
-                    <input type="text" placeholder="Website" name="website" />
-                    <div className="form-text">Could be your own or a company website</div>
-                </div>
-                <div className="form-group">
-                    <input type="text" placeholder="Location" name="location" />
-                    <div className="form-text">
-                        Where are you?
+                <form className="form" onSubmit={e => onSubmit(e)}>
+                    <div className="form-group">
+                        <div className="profile-text">
+                            Tell us about you, DE♥
+                            </div>
+                        <select name="status" value={status} onChange={e => onChange(e)}>
+                            <option value="0">* Select Professional Status</option>
+                            <option value="Front End">Front End</option>
+                            <option value="Back End">Back End</option>
+                            <option value="Full Stack">Full Stack</option>
+                            <option value="Team Lead">Team Lead</option>
+                            <option value="Intern/Associate">Intern/Associate</option>
+                            <option value="Other">Other</option>
+                        </select>
+
                     </div>
                     <div className="form-group">
-                        <input type="text" placeholder="* Skills" name="skills" />
-                        <div className="form-text">
-                            What languages do you speak?
+                        <div className="profile-text">
+                            Tell us about your work-life</div>
+                    </div>
+                    <input type="text" placeholder="Company" name="company" value={company} onChange={e => onChange(e)} />
+
+                    <div className="form-group">
+                        <div className="profile-text">Personal or Professional</div>
+
+                        <input type="text" placeholder="Website" name="website" value={website} onChange={e => onChange(e)} />
+                    </div>
+                    <div className="form-group">
+                        <div className="profile-text">
+                            Where are you?
+                    </div>
+                        <input type="text" placeholder="Location" name="location" value={location} onChange={e => onChange(e)} />
+
+                        <div className="form-group">
+                            <div className="profile-text">
+                                What languages do you use?
                         </div>
-                    </div>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            placeholder="Github Username"
-                            name="githubusername"
-                        />
-                        <div className="form-text">
-                            Github username</div>
-                    </div>
-                    <div className="form-group">
-                        <textarea placeholder="A short bio of yourself" name="bio"></textarea>
-                        <div className="form-text">Tell the other DE♥s about you</div>
-                    </div>
+                            <input type="text" placeholder="Languages" name="languages" value={languages} onChange={e => onChange(e)} />
 
-                    <div className="my-2">
-                        <button type="button" className="btn btn-light">
-                            Social Media Links
+                        </div>
+                        <div className="form-group">
+                            <div className="profile-text">
+                                Github username
+                        </div>
+                            <input
+                                type="text"
+                                placeholder="Github Username"
+                                name="githubusername"
+                                value={githubusername} onChange={e => onChange(e)}
+                            />
+
+                        </div>
+                        <div className="form-group">
+                            <div className="profile-text">Tell the other DE♥s about you</div>
+                            <textarea placeholder="DE♥ Bio" name="bio"></textarea>
+
+                        </div>
+
+                        <div className="my-2">
+                            <button onClick={() => toggleSocialInputs(!displaySocialInputs)}
+
+                                type="button" className="btn btn-light">
+                                Social Media
                     </button>
-                        <span>Optional</span>
-                    </div>
 
-                    <div className="form-group social-input">
-                        <i className="fab fa-twitter fa-2x"></i>
-                        <input type="text" placeholder="Twitter URL" name="twitter" />
-                    </div>
+                        </div>
 
-                    <div className="form-group social-input">
-                        <i className="fab fa-facebook fa-2x"></i>
-                        <input type="text" placeholder="Facebook URL" name="facebook" />
-                    </div>
+                        {displaySocialInputs && <>
+                            <div className="form-group">
+                                <i className="fab fa-facebook fa-2x"></i>
+                                <input type="text" placeholder="Facebook URL" name="facebook" />
+                            </div>
 
-                    <div className="form-group social-input">
-                        <i className="fab fa-youtube fa-2x"></i>
-                        <input type="text" placeholder="YouTube URL" name="youtube" />
-                    </div>
+                            <div className="form-group">
+                                <i className="fab fa-youtube fa-2x"></i>
+                                <input type="text" placeholder="YouTube URL" name="youtube" />
+                            </div>
 
-                    <div className="form-group social-input">
-                        <i className="fab fa-linkedin fa-2x"></i>
-                        <input type="text" placeholder="Linkedin URL" name="linkedin" />
-                    </div>
+                            <div className="form-group">
+                                <i className="fab fa-linkedin fa-2x"></i>
+                                <input type="text" placeholder="Linkedin URL" name="linkedin" />
+                            </div>
 
-                    <div className="form-group social-input">
-                        <i className="fab fa-instagram fa-2x"></i>
-                        <input type="text" placeholder="Instagram URL" name="instagram" />
-                    </div>
-                    <input type="submit" className="btn btn-primary my-1" />
-                    <a className="btn btn-light my-1" href="dashboard.html">Dashboard</a>
+                            <div className="form-group">
+                                <i className="fab fa-instagram fa-2x"></i>
+                                <input type="text" placeholder="Instagram URL" name="instagram" />
+                            </div>
+                        </>}
 
-                </div>
-            </form>
+
+                        <input type="submit" className="btn btn-primary my-1" />
+                        <div className="btn btn-light"><Link to="/dashboard">Dashboard</Link></div>
+
+
+                    </div>
+                </form>
+            </div>
         </>
-    )
+    );
+};
+
+CreateProfile.propTypes = {
+    createProfile: PropTypes.func.isRequired
 }
 
-export default CreateProfile;
+export default connect(null, { createProfile })(withRouter(CreateProfile));

@@ -56,11 +56,15 @@ router.post('/',
         }
 
         const {
+            company,
             age,
             height,
             gender,
             location,
+            website,
+            languages,
             hobbies,
+            githubusername,
             profession,
             instagram,
             snapchat,
@@ -74,9 +78,13 @@ router.post('/',
         if (age) profileFields.age = age;
         if (height) profileFields.height = height;
         if (gender) profileFields.gender = gender;
+        if (languages) profileFields.languages = languages;
+        if (website) profileFields.website = website;
         if (age) profileFields.age = age;
+        if (company) profileFields.company = company;
         if (location) profileFields.location = location;
         if (profession) profileFields.profession = profession;
+        if (githubusername) profileFields.githubusername = githubusername;
         if (hobbies) {
 
             // console.log(123)

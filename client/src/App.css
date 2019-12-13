@@ -564,6 +564,31 @@ button {
   margin-bottom: 0.5rem;
 }
 
+/* Dashboard */
+.dashboard-container {
+  height: 100vh;
+  text-align: center;
+  background: url('./img/dashboard-bg.jpg');
+  background-size: cover;
+
+}
+
+.dashboard-text {
+  padding-top: 10%;
+}
+
+/* Profile Setup */
+.profile-signup-container {
+  background: url('./img/profile-signup-bg.jpg');
+  background-size: cover;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.profile-text {
+  color: #000;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {

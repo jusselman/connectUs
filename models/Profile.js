@@ -5,6 +5,13 @@ const ProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    company: {
+        type: String,
+        required: true
+    },
+    website: {
+        type: String
+    },
     age: {
         type: Number,
         required: true
@@ -21,8 +28,11 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    languages: {
+        type: [String]
+    },
     hobbies: {
-        type: [String],
+        type: [String]
     },
     profession: {
         type: String
