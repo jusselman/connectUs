@@ -60,6 +60,7 @@ router.post('/',
             age,
             height,
             gender,
+            status,
             location,
             website,
             languages,
@@ -78,6 +79,7 @@ router.post('/',
         if (age) profileFields.age = age;
         if (height) profileFields.height = height;
         if (gender) profileFields.gender = gender;
+        if (status) profileFields.status = status;
         if (languages) profileFields.languages = languages;
         if (website) profileFields.website = website;
         if (age) profileFields.age = age;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loading from '../layout/Loading';
 import { Link } from 'react-router-dom';
+import DashboardActions from './DashboardActions';
 import { getCurrentProfile } from '../../actions/profile';
 
 const Dashboard = ({
@@ -25,7 +26,9 @@ const Dashboard = ({
                             Hey There {user && user.name}!
             </p>
                         {profile !== null ? (
-                            <>User Profile</>
+                            <>
+                                <DashboardActions />
+                            </>
                         ) : (
                                 <>
                                     <p>

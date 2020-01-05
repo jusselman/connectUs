@@ -12,6 +12,10 @@ const ProfileSchema = new mongoose.Schema({
     website: {
         type: String
     },
+    status: {
+        type: String,
+        required: true
+    },
     age: {
         type: Number,
         required: true
