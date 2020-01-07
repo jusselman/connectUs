@@ -41,6 +41,12 @@ const ProfileSchema = new mongoose.Schema({
     profession: {
         type: String
     },
+    githubusername: {
+        type: String
+    },
+    bio: {
+        type: String
+    },
 
     socialmedia: {
         instagram: {

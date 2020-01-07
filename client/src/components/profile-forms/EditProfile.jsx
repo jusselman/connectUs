@@ -19,6 +19,7 @@ const EditProfile = ({
         location: '',
         company: '',
         website: '',
+        bio: '',
         languages: '',
         githubusername: '',
         hobbies: '',
@@ -42,6 +43,7 @@ const EditProfile = ({
             location: loading || !profile.location ? '' : profile.location,
             company: loading || !profile.company ? '' : profile.company,
             website: loading || !profile.website ? '' : profile.website,
+            bio: loading || !profile.bio ? '' : profile.bio,
             languages: loading || !profile.languages ? '' : profile.languages,
             githubusername: loading || !profile.githubusername ? '' : profile.githubusername,
             hobbies: loading || !profile.company ? '' : profile.age,
@@ -65,17 +67,22 @@ const EditProfile = ({
         status,
         hobbies,
         profession,
+        bio,
         instagram,
         snapchat,
         facebook,
         linkedin
     } = formData;
 
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+    const onChange = e =>
+        setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit = e => {
+        console.log('before prevent');
         e.preventDefault();
+        console.log('after prevent');
         createProfile(formData, history, true);
+        console.log('after create')
     };
     return (
         <>
@@ -168,7 +175,8 @@ const EditProfile = ({
                         </div>
                         <div className="form-group">
                             <div className="profile-text">Tell the other DE♥s about you</div>
-                            <textarea placeholder="DE♥ Bio" name="bio"></textarea>
+                            <input placeholder="DE♥ Bio" name="bio" value={bio} onChange={e => onChange(e)}></input>
+
                         </div>
 
                         <div className="my-2">
@@ -217,7 +225,7 @@ EditProfile.propTypes = {
     createProfile: PropTypes.func.isRequired,
     getCurrentProfile: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = state => ({
     profile: state.profile

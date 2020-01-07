@@ -39,7 +39,8 @@ export const createProfile = (
             }
         };
 
-        const res = await axios.post('/api/profile', formData, config);
+        const res = await !edit ? axios.post('/api/profile', formData, config) :
+            axios.put('/api/profile', formData, config);
 
         dispatch({
             type: GET_PROFILE,
@@ -48,11 +49,13 @@ export const createProfile = (
 
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
 
-        if (!edit) {
-            history.push('/dashboard');
-        }
+        getCurrentProfile();
+        history.push('/dashboard');
+
     } catch (err) {
+        console.log(err);
         const errors = err.response.data.errors;
+        console.log(err);
 
         if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
@@ -64,6 +67,3 @@ export const createProfile = (
         });
     }
 };
-
-
-
