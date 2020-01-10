@@ -158,9 +158,14 @@ const CreateProfile = ({
                         </div>
 
                         <div className="form-group">
-                            <div className="profile-text">Tell the other DE♥s about you</div>
-                            <input placeholder="DE♥ Bio" name="bio" value={bio} onChange={e => onChange(e)}></input>
-
+                            <div className="profile-text">
+                                Tell the other DE♥s about you
+                            </div>
+                            <input
+                                type='text'
+                                placeholder="DE♥ Bio"
+                                name="bio"
+                                value={bio} onChange={e => onChange(e)} />
                         </div>
 
                         <div className="my-2">
@@ -168,29 +173,46 @@ const CreateProfile = ({
                                 type="button" className="btn btn-light">
                                 Social Media
                                 </button>
-
                         </div>
 
-                        {displaySocialInputs && <>
-                            <div className="form-group">
-                                <i className="fab fa-facebook fa-2x"></i>
-                                <input type="text" placeholder="Facebook URL" name="facebook" value={facebook} onChange={e => onChange(e)} />
-                            </div>
+                        {displaySocialInputs && (
+                            <>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        placeholder="Facebook URL"
+                                        name="facebook" value={facebook}
+                                        onChange={e => onChange(e)} />
+                                </div>
 
-                            <div className="form-group">
-                                <input type="text" placeholder="SnapChat URL" name="snapchat" value={snapchat} onChange={e => onChange(e)} />
-                            </div>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        placeholder="SnapChat URL"
+                                        name="snapchat"
+                                        value={snapchat}
+                                        onChange={e => onChange(e)} />
+                                </div>
 
-                            <div className="form-group">
-                                <i className="fab fa-linkedin fa-2x"></i>
-                                <input type="text" placeholder="Linkedin URL" name="linkedin" value={linkedin} onChange={e => onChange(e)} />
-                            </div>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        placeholder="Linkedin URL"
+                                        name="linkedin"
+                                        value={linkedin}
+                                        onChange={e => onChange(e)} />
+                                </div>
 
-                            <div className="form-group">
-                                <i className="fab fa-instagram fa-2x"></i>
-                                <input type="text" placeholder="Instagram URL" name="instagram" value={instagram} onChange={e => onChange(e)} />
-                            </div>
-                        </>}
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        placeholder="Instagram URL"
+                                        name="instagram"
+                                        value={instagram}
+                                        onChange={e => onChange(e)} />
+                                </div>
+                            </>
+                        )}
 
 
                         <input type="submit" className="btn btn-primary my-1" />

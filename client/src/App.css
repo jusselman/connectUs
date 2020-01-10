@@ -352,11 +352,9 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
-
   z-index: 1;
   width: 100%;
   top: 0;
-  /* border-bottom: solid 1px var(--primary-color); */
   opacity: 0.9;
 }
 
@@ -527,6 +525,26 @@ button {
 .profile-github>div:last-child {
   flex: 3;
   flex-basis: 20%;
+}
+
+/* Looking Page */
+.looking-container {
+  width: 100%;
+  height: 100vh;
+  background: url('img/looking-bg.jpg');
+  background-size: cover;
+  text-align: center;
+}
+
+.looking-header {
+  font-size: 40px;
+  color: var(--primary-color);
+  padding-top: 3rem;
+}
+
+.looking-children {
+  color: #000;
+
 }
 
 /* Posts Page */

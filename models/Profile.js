@@ -68,11 +68,27 @@ const ProfileSchema = new mongoose.Schema({
                 type: String,
                 required: true
             },
+            age: {
+                type: String,
+                required: true
+            },
             gender: {
                 type: String,
                 required: true
             },
-            age: {
+            minweight: {
+                type: Number,
+                required: true
+            },
+            maxweight: {
+                type: String,
+                required: true
+            },
+            minage: {
+                type: Number,
+                required: true
+            },
+            maxage: {
                 type: Number,
                 required: true
             },

@@ -46,7 +46,7 @@ const EditProfile = ({
             bio: loading || !profile.bio ? '' : profile.bio,
             languages: loading || !profile.languages ? '' : profile.languages,
             githubusername: loading || !profile.githubusername ? '' : profile.githubusername,
-            hobbies: loading || !profile.company ? '' : profile.age,
+            hobbies: loading || !profile.hobbies ? '' : profile.hobbies,
             profession: loading || !profile.profession ? '' : profile.profession,
             instagram: loading || !profile.social ? '' : profile.social.instagram,
             snapchat: loading || !profile.social ? '' : profile.social.snapchat,
@@ -78,12 +78,10 @@ const EditProfile = ({
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit = e => {
-        console.log('before prevent');
         e.preventDefault();
-        console.log('after prevent');
         createProfile(formData, history, true);
-        console.log('after create')
     };
+
     return (
         <>
             <div className="profile-signup-container">
@@ -174,9 +172,10 @@ const EditProfile = ({
 
                         </div>
                         <div className="form-group">
-                            <div className="profile-text">Tell the other DE♥s about you</div>
-                            <input placeholder="DE♥ Bio" name="bio" value={bio} onChange={e => onChange(e)}></input>
-
+                            <div className="profile-text">
+                                Tell the other DE♥s about you
+                            </div>
+                            <input type='text' placeholder="DE♥ Bio" name="bio" value={bio} onChange={e => onChange(e)} />
                         </div>
 
                         <div className="my-2">
@@ -189,22 +188,39 @@ const EditProfile = ({
                         {displaySocialInputs && (
                             <>
                                 <div className="form-group">
-                                    <i className="fab fa-facebook fa-2x"></i>
-                                    <input type="text" placeholder="Facebook" name="facebook" value={facebook} onChange={e => onChange(e)} />
+                                    <input
+                                        type="text"
+                                        placeholder="Facebook"
+                                        name="facebook"
+                                        value={facebook}
+                                        onChange={e => onChange(e)} />
                                 </div>
 
                                 <div className="form-group">
-                                    <input type="text" placeholder="SnapChat" name="snapchat" value={snapchat} onChange={e => onChange(e)} />
+                                    <input
+                                        type="text"
+                                        placeholder="SnapChat"
+                                        name="snapchat"
+                                        value={snapchat}
+                                        onChange={e => onChange(e)} />
                                 </div>
 
                                 <div className="form-group">
-                                    <i className="fab fa-linkedin fa-2x"></i>
-                                    <input type="text" placeholder="Linkedin" name="linkedin" value={linkedin} onChange={e => onChange(e)} />
+                                    <input
+                                        type="text"
+                                        placeholder="Linkedin"
+                                        name="linkedin"
+                                        value={linkedin}
+                                        onChange={e => onChange(e)} />
                                 </div>
 
                                 <div className="form-group">
-                                    <i className="fab fa-instagram fa-2x"></i>
-                                    <input type="text" placeholder="Instagram" name="instagram" value={instagram} onChange={e => onChange(e)} />
+                                    <input
+                                        type="text"
+                                        placeholder="Instagram"
+                                        name="instagram"
+                                        value={instagram}
+                                        onChange={e => onChange(e)} />
                                 </div>
                             </>
                         )}

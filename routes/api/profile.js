@@ -185,7 +185,7 @@ router.put('/',
         if (location) profileFields.location = location;
         if (profession) profileFields.profession = profession;
         if (githubusername) profileFields.githubusername = githubusername;
-        if (hobbies) {
+        if (hobbies) profileFields.hobbies = hobbies; {
 
             // console.log(123)
             // profileFields.hobbies = hobbies.split(',').map(look => look.trim());

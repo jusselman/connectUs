@@ -4,10 +4,8 @@ import { setAlert } from './alert';
 import {
     GET_PROFILE,
     PROFILE_ERROR,
-
+    UPDATE_PROFILE
 } from './types';
-import { format } from 'path';
-
 
 // Get current users perfil //
 export const getCurrentProfile = () => async dispatch => {
@@ -56,6 +54,39 @@ export const createProfile = (
         console.log(err);
         const errors = err.response.data.errors;
         console.log(err);
+
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+};
+
+// Add looking for //
+export const addLooking = (formData, history) => async dispatch => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const res = await axios.put('/api/profile/looking', formData, config);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Preferences Accepted', 'success'));
+
+        history.push('/dashboard');
+    } catch (err) {
+        const errors = err.response.data.errors;
 
         if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
