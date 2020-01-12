@@ -103,8 +103,7 @@ const AddLooking = ({ addLooking, history }) => {
 }
 
 AddLooking.propTypes = {
-    createProfile: PropTypes.func.isRequired,
     addLooking: PropTypes.func.isRequired
-}
+};
 
-export default connect(null, { addLooking })(AddLooking)
+export default connect(null, { addLooking })(withRouter(AddLooking));

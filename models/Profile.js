@@ -92,7 +92,19 @@ const ProfileSchema = new mongoose.Schema({
                 type: Number,
                 required: true
             },
+            physique: {
+                type: String,
+                required: true
+            },
+            distance: {
+                type: String,
+                required: true
+            },
             hate: {
+                type: String,
+                required: true
+            },
+            children: {
                 type: String,
                 required: true
             }

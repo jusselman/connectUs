@@ -89,11 +89,7 @@ router.post('/',
         if (location) profileFields.location = location;
         if (profession) profileFields.profession = profession;
         if (githubusername) profileFields.githubusername = githubusername;
-        if (hobbies) {
-
-            // console.log(123)
-            // profileFields.hobbies = hobbies.split(',').map(look => look.trim());
-        }
+        if (hobbies) profileFields.hobbies = hobbies;
 
         profileFields.socialmedia = {};
         if (instagram) profileFields.socialmedia.instagram = instagram;
@@ -185,11 +181,7 @@ router.put('/',
         if (location) profileFields.location = location;
         if (profession) profileFields.profession = profession;
         if (githubusername) profileFields.githubusername = githubusername;
-        if (hobbies) profileFields.hobbies = hobbies; {
-
-            // console.log(123)
-            // profileFields.hobbies = hobbies.split(',').map(look => look.trim());
-        }
+        if (hobbies) profileFields.hobbies = hobbies;
 
         profileFields.socialmedia = {};
         if (instagram) profileFields.socialmedia.instagram = instagram;
@@ -303,16 +295,34 @@ router.put(
 
         const {
             interested,
-            gender,
             age,
-            hate
+            gender,
+            minheight,
+            maxheight,
+            minweight,
+            maxweight,
+            minage,
+            maxage,
+            physique,
+            distance,
+            hate,
+            children
         } = req.body;
 
         const newLook = {
             interested,
-            gender,
             age,
-            hate
+            gender,
+            minheight,
+            maxheight,
+            minweight,
+            maxweight,
+            minage,
+            maxage,
+            physique,
+            distance,
+            hate,
+            children
         }
 
         try {

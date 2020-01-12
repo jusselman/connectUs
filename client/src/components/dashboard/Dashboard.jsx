@@ -5,6 +5,7 @@ import Loading from '../layout/Loading';
 import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
 import { getCurrentProfile } from '../../actions/profile';
+import Looking from './Looking';
 
 const Dashboard = ({
     getCurrentProfile,
@@ -27,9 +28,8 @@ const Dashboard = ({
             </p>
                         {profile !== null ? (
                             <>
-
-
                                 <DashboardActions />
+                                <Looking looking={profile.looking} />
                             </>
                         ) : (
                                 <>
@@ -38,7 +38,7 @@ const Dashboard = ({
                 </p>
                                     <Link to='/create-profile' className='btn btn-primary'>
                                         Set Up Profile
-            </Link>
+                                    </Link>
                                 </>
                             )}
                     </div>
