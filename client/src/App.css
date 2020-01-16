@@ -595,6 +595,18 @@ button {
   padding-top: 10%;
 }
 
+/* Dashboard Page */
+
+.dashlook-container {
+  display: inline-block;
+}
+
+.dashlook-content {
+  background: white;
+  width: auto;
+  display: inline-block;
+}
+
 /* Profile Setup */
 .profile-signup-container {
   background: url('./img/profile-signup-bg.jpg');

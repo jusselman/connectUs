@@ -25,7 +25,7 @@ const Dashboard = ({
                         <h1>Dashboard</h1>
                         <p>
                             Hey There {user && user.name}!
-            </p>
+                        </p>
                         {profile !== null ? (
                             <>
                                 <DashboardActions />

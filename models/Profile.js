@@ -48,27 +48,9 @@ const ProfileSchema = new mongoose.Schema({
         type: String
     },
 
-    socialmedia: {
-        instagram: {
-            type: String
-        },
-        snapchat: {
-            type: String
-        },
-        facebook: {
-            type: String
-        },
-        linkedin: {
-            type: String
-        }
-    },
     looking: [
         {
             interested: {
-                type: String,
-                required: true
-            },
-            age: {
                 type: String,
                 required: true
             },
@@ -110,6 +92,22 @@ const ProfileSchema = new mongoose.Schema({
             }
         }
     ],
+
+    socialmedia: {
+        instagram: {
+            type: String
+        },
+        snapchat: {
+            type: String
+        },
+        facebook: {
+            type: String
+        },
+        linkedin: {
+            type: String
+        }
+    },
+
     date: {
         type: Date,
         default: Date.now

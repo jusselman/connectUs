@@ -57,9 +57,6 @@ const AddLooking = ({ addLooking, history }) => {
                         <input type="text" placeholder="Interested In" name="interested" value={interested} onChange={e => onChange(e)} required />
                     </div>
                     <div className="form-group">
-                        <input type="text" placeholder="Age" name="age" value={age} onChange={e => onChange(e)} required />
-                    </div>
-                    <div className="form-group">
                         <input type="text" placeholder="Gender" name="gender" value={gender} onChange={e => onChange(e)} required />
                     </div>
                     <div className="form-group">
