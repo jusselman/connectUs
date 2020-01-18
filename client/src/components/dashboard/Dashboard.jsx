@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import Loading from '../layout/Loading';
 import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
-import { getCurrentProfile } from '../../actions/profile';
+import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import Looking from './Looking';
 
 const Dashboard = ({
     getCurrentProfile,
+    deleteAccount,
     auth: { user },
     profile: { profile, loading }
 }) => {
@@ -26,10 +27,16 @@ const Dashboard = ({
                         <p>
                             Hey There {user && user.name}!
                         </p>
-                        {profile !== null ? (
+                        {profile ? (
                             <>
                                 <DashboardActions />
                                 <Looking looking={profile.looking} />
+
+                                <div className="my-2">
+                                    <button onClick={() => deleteAccount()} className="btn btn-danger">
+                                        Delete Account
+                                    </button>
+                                </div>
                             </>
                         ) : (
                                 <>
@@ -48,11 +55,9 @@ const Dashboard = ({
 };
 
 
-
-
-
 Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
+    deleteAccount: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired
 };

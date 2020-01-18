@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { deleteLooking } from '../../actions/profile';
 
-const Looking = ({ looking }) => {
+const Looking = ({ looking, deleteLooking }) => {
     const lookings = looking.map(look => (
         <ul className="dashlook-content" key={look._id} >
             <li>Relationship Type: {look.interested}</li>
@@ -18,14 +19,13 @@ const Looking = ({ looking }) => {
             <li>I Hate....: {look.hate}</li>
             <li>Children or No: {look.children}</li>
             <li>
-                <button className="btn btn-danger">Delete</button>
+                <button onClick={() => deleteLooking(look._id)} className="btn btn-danger">Delete</button>
             </li>
         </ul>
     ));
 
     return (
         <>
-            <h2 className="my-2">Looking for</h2>
             <div className="dashlook-container">
                 <h2 className="dashlook-header">
                     I'm interested in ...
@@ -37,8 +37,8 @@ const Looking = ({ looking }) => {
 };
 
 Looking.propTypes = {
-    looking: PropTypes.array.isRequired,
-
+    looking: PropTypes.array.isRequired
+    // deleteLooking: PropTypes.array.isRequired
 };
 
-export default Looking;
+export default connect(null, { deleteLooking })(Looking);

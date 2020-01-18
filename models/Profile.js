@@ -18,7 +18,7 @@ const ProfileSchema = new mongoose.Schema({
     },
     age: {
         type: Number,
-        required: true
+
     },
     height: {
         type: Number,
@@ -59,7 +59,7 @@ const ProfileSchema = new mongoose.Schema({
                 required: true
             },
             minweight: {
-                type: Number,
+                type: String,
                 required: true
             },
             maxweight: {

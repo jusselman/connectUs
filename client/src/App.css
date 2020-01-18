@@ -530,7 +530,6 @@ button {
 /* Looking Page */
 .looking-container {
   width: 100%;
-  height: 100vh;
   background: url('img/looking-bg.jpg');
   background-size: cover;
   text-align: center;
@@ -602,9 +601,11 @@ button {
 }
 
 .dashlook-content {
-  background: white;
+  padding: 10px 20px;
+  background: rgba(148, 94, 225, 0.708);
   width: auto;
   display: inline-block;
+  border-radius: 10%;
 }
 
 /* Profile Setup */

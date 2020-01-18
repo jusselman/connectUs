@@ -279,9 +279,6 @@ router.put(
             check('gender', 'Gender is required')
                 .not()
                 .isEmpty(),
-            check('age', 'Age is required')
-                .not()
-                .isEmpty(),
             check('hate', 'Hate is required')
                 .not()
                 .isEmpty()

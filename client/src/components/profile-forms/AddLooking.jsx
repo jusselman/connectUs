@@ -8,7 +8,6 @@ import { addLooking } from '../../actions/profile';
 const AddLooking = ({ addLooking, history }) => {
     const [formData, setFormData] = useState({
         interested: '',
-        age: '',
         gender: '',
         minheight: '',
         maxheight: '',
@@ -24,7 +23,6 @@ const AddLooking = ({ addLooking, history }) => {
 
     const {
         interested,
-        age,
         gender,
         minheight,
         maxheight,
