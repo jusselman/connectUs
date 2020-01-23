@@ -9,8 +9,6 @@ import {
     CLEAR_PROFILE,
     DELETE_ACCOUNT,
     GET_GITHUB
-
-
 } from './types';
 
 // Get current users perfil //
@@ -30,7 +28,7 @@ export const getCurrentProfile = () => async dispatch => {
     }
 };
 
-// Get profiles //
+// Get all profiles //
 export const getProfiles = () => async dispatch => {
     dispatch({ type: CLEAR_PROFILE });
     try {
@@ -50,7 +48,6 @@ export const getProfiles = () => async dispatch => {
 
 // Get profile by ID //
 export const getProfileById = userId => async dispatch => {
-    dispatch({ types: CLEAR_PROFILE });
     try {
         const res = await axios.get(`/api/profile/user/${userId}`);
 

@@ -30,7 +30,7 @@ export default function (state = initialState, action) {
                 ...state,
                 profiles: payload,
                 loading: false
-            }
+            };
         case PROFILE_ERROR:
             return {
                 ...state,
@@ -47,8 +47,7 @@ export default function (state = initialState, action) {
         case GET_GITHUB:
             return {
                 ...state,
-                profile: null,
-                repos: [],
+                repos: payload,
                 loading: false
             };
         default:
